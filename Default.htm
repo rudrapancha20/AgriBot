@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agriculture Chatbot</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0ffe0 0%, #b2f7b2 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      width: 100%;
+      background: #388e3c;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    header p {
+      margin: 0.5rem 0 0 0;
+      font-size: 1.2rem;
+      color: #e0ffe0;
+    }
+    .chatbot-container {
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(56,142,60,0.15);
+      padding: 2rem;
+      max-width: 400px;
+      width: 100%;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .instructions {
+      margin-bottom: 1.5rem;
+      color: #388e3c;
+      font-size: 1rem;
+      text-align: center;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .chatbot-container {
+        padding: 1rem;
+        min-height: 400px;
+      }
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AgriBot: Your Agriculture Assistant</h1>
+    <p>Ask me anything about farming, crops, weather, and more!</p>
+  </header>
+  <div class="chatbot-container">
+    <div class="instructions">
+      </div>
+
+   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="AgricultureAgent1"
+  agent-id="84f028ec-7867-4e41-b9b9-cb4b5e0441f5"
+  language-code="en"
+></df-messenger>
+    <script>
+      console.log('Script loaded. Waiting for dfMessengerLoaded event...');
+
+      document.addEventListener('dfMessengerLoaded', function (event) {
+        console.log('dfMessengerLoaded event fired!');
+        const dfMessenger = document.querySelector('df-messenger');
+        
+        if (dfMessenger) {
+          console.log('df-messenger element found. Attempting to send "hi" with a small delay...');
+          
+          // Introduce a small delay to ensure the sendText method is fully ready
+          setTimeout(() => {
+            try {
+              dfMessenger.sendText('hi');
+              console.log('"hi" message sent successfully (command issued after delay).');
+            } catch (e) {
+              console.error('Error calling dfMessenger.sendText:', e);
+            }
+          }, 200); // Try 200ms delay. You can adjust this if needed (e.g., 100ms or 500ms).
+          
+        } else {
+          console.error('df-messenger element NOT found after dfMessengerLoaded!');
+        }
+      });
+    </script>
+  </div>
+</body>
+</html> 
