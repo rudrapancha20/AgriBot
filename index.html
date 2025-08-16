@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Agriculture Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f8f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4CAF50, #81c784);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #388e3c;
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1.05rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .feature-card {
+      background-color: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-card img {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 15px;
+    }
+
+    .feature-card h3 {
+      color: #4CAF50;
+      margin-bottom: 10px;
+    }
+
+    /* Image Scroller */
+    .image-scroll {
+      overflow: hidden;
+      width: 100%;
+      max-width: 1000px;
+      margin: 40px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .scroll-track {
+      display: flex;
+      width: calc(300px * 12 * 2 + 15px * 22); /* 2 sets of 12 images */
+      animation: scrollLeft 40s linear infinite;
+    }
+
+    .scroll-track img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .scroll-track img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes scrollLeft {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* How It Works */
+    .how-it-works {
+      background-color: #ffffff;
+      padding: 80px 20px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .how-it-works .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2e7d32;
+      margin-bottom: 60px;
+      font-weight: 700;
+    }
+
+    .how-it-works-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .step-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 25px;
+      padding: 25px;
+      border-radius: 12px;
+      background: #f9f9f9;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      transition: transform 0.3s ease;
+    }
+
+    .step-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon-circle {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .step-content p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .how-it-works-steps {
+        flex-direction: column;
+      }
+
+      .step-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌾 Smart Agriculture Bot</h1>
+    <p>Your Digital Assistant for Smarter Farming</p>
+  </header>
+
+  <section>
+    <h2>🤖 What is the Agriculture Bot?</h2>
+    <p style="text-align:center; max-width: 800px; margin: auto;">
+      The Smart Agriculture Bot is a virtual assistant built to support farmers and agriculture. 
+      It offers guidance on crops, weather, fertilizers, pests, and market prices to help users make informed decisions and improve their farming productivity.
+    </p>
+
+   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="AgriBot"
+  agent-id="84f028ec-7867-4e41-b9b9-cb4b5e0441f5"
+  language-code="en"
+></df-messenger>
+    <script>
+      console.log('Script loaded. Waiting for dfMessengerLoaded event...');
+
+      document.addEventListener('dfMessengerLoaded', function (event) {
+        console.log('dfMessengerLoaded event fired!');
+        const dfMessenger = document.querySelector('df-messenger');
+        
+        if (dfMessenger) {
+          console.log('df-messenger element found. Attempting to send "hi" with a small delay...');
+          
+          // Introduce a small delay to ensure the sendText method is fully ready
+          setTimeout(() => {
+            try {
+              dfMessenger.sendText('hi');
+              console.log('"hi" message sent successfully (command issued after delay).');
+            } catch (e) {
+              console.error('Error calling dfMessenger.sendText:', e);
+            }
+          }, 200); // Try 200ms delay. You can adjust this if needed (e.g., 100ms or 500ms).
+          
+        } else {
+          console.error('df-messenger element NOT found after dfMessengerLoaded!');
+        }
+      });
+    </script>
+
+
+ <div class="image-scroll">
+  <div class="scroll-track">
+    <!-- First set of 12 images -->
+    <img src="https://images.unsplash.com/photo-1498408040764-ab6eb772a145?w=600&auto=format&fit=crop&q=60" alt="Crop" />
+    <img src="https://media.istockphoto.com/id/1484315267/photo/weather-station-in-corn-field-5g-technology-with-smart-farming-concept.jpg?s=612x612&w=0&k=20&c=-lqfPOiVBeLNUI9G_zvM9wCJcDQHPXchfH3Ue9VvhQA=" alt="Weather" />
+    <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&auto=format&fit=crop&q=60" alt="Cultivation" />
+    <img src="https://media.istockphoto.com/id/522391502/photo/farmer-spreading-fertilizer-in-the-field-wheat.webp?a=1&b=1&s=612x612&w=0&k=20&c=uAfPuR4JPwdlx-KADzSAVbEYeuPR8SkHXsCiXuyizAo=" alt="Fertilizer" />
+    <img src="https://media.istockphoto.com/id/805830962/photo/farmer-working-in-wheat-field.webp?a=1&b=1&s=612x612&w=0&k=20&c=oeKrU19N43m5B_Ynp0fw3u9eXvQsAF6HPUPkF6xTUoU=" alt="Pesticide" />
+    <img src="https://media.istockphoto.com/id/1622055565/photo/future-financial-and-investment-theme-growth-your-wealth-in-2024.webp?a=1&b=1&s=612x612&w=0&k=20&c=CWGr38bHLWYuIwAMFqJ9jJ07N6g9gydT7BVYQYZ3hyc=" alt="Market Price" />
+    <img src="https://images.unsplash.com/photo-1498408040764-ab6eb772a145?w=600&auto=format&fit=crop&q=60" alt="Crop" />
+    <img src="https://media.istockphoto.com/id/1484315267/photo/weather-station-in-corn-field-5g-technology-with-smart-farming-concept.jpg?s=612x612&w=0&k=20&c=-lqfPOiVBeLNUI9G_zvM9wCJcDQHPXchfH3Ue9VvhQA=" alt="Weather" />
+    <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&auto=format&fit=crop&q=60" alt="Cultivation" />
+    <img src="https://media.istockphoto.com/id/522391502/photo/farmer-spreading-fertilizer-in-the-field-wheat.webp?a=1&b=1&s=612x612&w=0&k=20&c=uAfPuR4JPwdlx-KADzSAVbEYeuPR8SkHXsCiXuyizAo=" alt="Fertilizer" />
+    <img src="https://media.istockphoto.com/id/805830962/photo/farmer-working-in-wheat-field.webp?a=1&b=1&s=612x612&w=0&k=20&c=oeKrU19N43m5B_Ynp0fw3u9eXvQsAF6HPUPkF6xTUoU=" alt="Pesticide" />
+    <img src="https://media.istockphoto.com/id/1622055565/photo/future-financial-and-investment-theme-growth-your-wealth-in-2024.webp?a=1&b=1&s=612x612&w=0&k=20&c=CWGr38bHLWYuIwAMFqJ9jJ07N6g9gydT7BVYQYZ3hyc=" alt="Market Price" />
+  </div>
+</div>
+  </section>
+
+  <section>
+    <h2>🌟 Key Features</h2>
+    <div class="features">
+      <div class="feature-card">
+        <img src="https://img.icons8.com/color/96/000000/plant-under-rain.png" alt="Crop Info">
+        <h3>🌱 Crop Info</h3>
+        <p>Learn about planting, water needs, pests, and harvesting tips.</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://img.icons8.com/fluency/96/partly-cloudy-day.png" alt="Weather">
+        <h3>☁️ Weather</h3>
+        <p>Get live updates and rainfall predictions to plan your farm work.</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://img.icons8.com/color/96/tractor.png" alt="Cultivation">
+        <h3>🌾 Cultivation</h3>
+        <p>Guidelines for land prep, sowing methods, irrigation, and management.</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://img.icons8.com/?size=100&id=gPoYGVWX06zv&format=png" alt="Fertilizer" />
+        <h3>🧪 Fertilizer</h3>
+        <p>Get advice on type, quantity, and application timing for fertilizers.</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://img.icons8.com/fluency/96/bug.png" alt="Pesticide">
+        <h3>🐛 Pesticide</h3>
+        <p>Identify pests and use safe methods to protect your crops.</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://img.icons8.com/fluency/96/sales-performance.png" alt="Market Prices">
+        <h3>📈 Market Price</h3>
+        <p>Live market prices and selling tips to earn better profits.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">🔍 How It Works</h2>
+      <div class="how-it-works-steps">
+        <div class="step-box">
+          <div class="icon-circle">1</div>
+          <div class="step-content">
+            <h3>Choose a Category</h3>
+            <p>Start by selecting a topic like <strong>🌱 Crop Info</strong>, <strong>☁️ Weather</strong>, <strong>🌾 Cultivation</strong>, <strong>🧪 Fertilizer</strong>, <strong>🐛 Pesticide</strong>  or  <strong>📈 Market Price</strong> to get relevant insights.</p>
+          </div>
+        </div>
+        <div class="step-box">
+          <div class="icon-circle">2</div>
+          <div class="step-content">
+            <h3>Ask Your Question</h3>
+            <p>Enter your query or follow the on-screen menu to navigate farming assistance options.</p>
+          </div>
+        </div>
+        <div class="step-box">
+          <div class="icon-circle">3</div>
+          <div class="step-content">
+            <h3>Precision Guidance for Better Farming</h3>
+            <p>Receive expert recommendations instantly — tailored to your crop and location needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Smart Agriculture Bot | Growing Together, Smarter Every Day</p>
+  </footer>
+
+</body>
+</html>
