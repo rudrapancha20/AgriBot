@@ -258,19 +258,7 @@
       });
 
 
-      const dfMessage = document.querySelector('df-message');
-const root = dfMessage.shadowRoot || dfMessage.getRootNode();
-if (root && root instanceof ShadowRoot && !root.querySelector('#botMessageStyle')) {
-  const style = document.createElement('style');
-  style.id = 'botMessageStyle';
-  style.textContent = `
-    .message.bot-message {
-      white-space: pre-line !important;
-      line-height: 1.5;
-    }
-  `;
-  root.appendChild(style);
-}
+
 
     </script>
 
