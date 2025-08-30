@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Smart Agriculture Bot</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    .bot-message {
-     white-space:pre-line !important;
-      line-height:1.5
-    }
+  <style>   
     * {
       margin: 0;
       padding: 0;
@@ -260,6 +256,22 @@
           console.error('df-messenger element NOT found after dfMessengerLoaded!');
         }
       });
+
+
+      const dfMessage = document.querySelector('df-message');
+const root = dfMessage.shadowRoot || dfMessage.getRootNode();
+if (root && root instanceof ShadowRoot && !root.querySelector('#botMessageStyle')) {
+  const style = document.createElement('style');
+  style.id = 'botMessageStyle';
+  style.textContent = `
+    .message.bot-message {
+      white-space: pre-line !important;
+      line-height: 1.5;
+    }
+  `;
+  root.appendChild(style);
+}
+
     </script>
 
 
@@ -353,5 +365,6 @@
 
 </body>
 </html>
+
 
 
